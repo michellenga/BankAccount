@@ -1,0 +1,38 @@
+package lab9;
+
+/**
+ *
+ * @author michelle
+ */
+public class Lab9 {
+
+    public static int charToIndex(char c) {
+        int result = (int) c;
+        int lowerCase = 97;
+        int uppperCase = 65;
+        if (result <= 122 && result >= 97)
+            result -= lowerCase;
+        else if (result >= 65 && result <= 90)
+            result -= uppperCase;
+        return result;
+    }
+    
+    public static char[] alpha = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 
+        'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 
+        'X', 'Y', 'Z'};
+    public static void main(String[] args) {
+        
+        System.out.println(new CaesarCipher(3).encrypt("the encryption is working correctly"));
+        System.out.println(new CaesarCipher(3).decrypt("WKH HQFUBSWLRQ LV ZRUNLQJ FRUUHFWOB"));
+        System.out.println(new TrithemiusCipher().encrypt("machine"));
+        System.out.println(new TrithemiusCipher().encrypt("the encryption is working correctly"));
+        System.out.println(new TrithemiusCipher().decrypt("TIG EOEUCUZPWW IT WPTNMSM CPTUIHZSG"));
+        System.out.println(new JasonCipher().encrypt("four"));
+        System.out.println(new JasonCipher().encrypt("three"));
+        System.out.println(new JasonCipher().decrypt("ofzw"));
+        System.out.println(new JasonCipher().decrypt("rhtjj"));
+
+    
+    
+    }
+}
