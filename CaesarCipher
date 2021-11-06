@@ -1,0 +1,47 @@
+package lab9;
+import java.awt.*;
+/**
+ *
+ * @author michelle
+ */
+public  class CaesarCipher implements Cipher{
+    private int shift;
+    
+    public CaesarCipher(int shift){
+        this.shift = shift;
+    }
+
+    @Override
+    public String encrypt(String plainText) {
+        StringBuilder encryptedString = new StringBuilder();
+        for (char c : plainText.toCharArray()) {
+            if (c == ' ') {
+                encryptedString.append(" ");
+                continue;
+            }
+            int index = Lab9.charToIndex(c);
+            int newIndex = index + shift;
+            newIndex = newIndex % 26;
+            encryptedString.append(Lab9.alpha[newIndex]);
+        }
+        return encryptedString.toString();
+    }
+
+    @Override
+    public String decrypt(String encryptedText) {
+        StringBuilder plainString = new StringBuilder();
+        for (char c : encryptedText.toCharArray()) {
+            if (c == ' ') {
+                plainString.append(" ");
+                continue;
+            }
+            int index = Lab9.charToIndex(c);
+            int newIndex = index + (-1 * shift);
+            newIndex = newIndex % 25;
+            if (newIndex < 0)
+                newIndex += 26;
+            plainString.append(Lab9.alpha[newIndex]);
+        }
+        return plainString.toString();
+    }
+}
