@@ -1,0 +1,49 @@
+package lab9;
+
+/**
+ *
+ * @author michelle
+ */
+public class TrithemiusCipher implements Cipher{
+public TrithemiusCipher(){
+    
+}
+    @Override
+    public String encrypt(String plainText) {
+        int shift = 0;
+        StringBuilder encryptedString = new StringBuilder();
+        for (char c : plainText.toCharArray()) {
+            if (c == ' ') {
+                shift = 0;
+                encryptedString.append(" ");
+                continue;
+            }
+            int index = Lab9.charToIndex(c);
+            int newIndex = index + shift++;
+            newIndex = newIndex % 26;
+            encryptedString.append(Lab9.alpha[newIndex]);
+        }
+        return encryptedString.toString();
+    }
+
+    @Override
+    public String decrypt(String encryptedText) {
+        int shift = 0;
+        StringBuilder plainString = new StringBuilder();
+        for (char c : encryptedText.toCharArray()) {
+            if (c == ' ') {
+                shift = 0;
+                plainString.append(" ");
+                continue;
+            }
+            int index = Lab9.charToIndex(c);
+            int newIndex = index + (-1 * shift++);
+            newIndex = newIndex % 25;
+            if (newIndex < 0)
+                newIndex += 26;
+            plainString.append(Lab9.alpha[newIndex]);
+        }
+        return plainString.toString();
+    }
+    
+}
